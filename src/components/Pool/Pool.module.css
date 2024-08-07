@@ -1,0 +1,19 @@
+.pool {
+	margin-top: 40px;
+	display: grid;
+	grid-template-columns: repeat(3, 7rem);
+	grid-template-rows: repeat(3, 7rem);
+	align-items: center;
+}
+
+.button {
+	width: 7rem;
+	height: 7rem;
+	border: none;
+	font-size: 50px;
+	background-color: #ffcf6e;
+}
+
+.button:hover {
+	background-color: #6b5019;
+}

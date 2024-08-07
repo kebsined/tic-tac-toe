@@ -1,25 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { PoolContainer } from './components/Pool/Pool';
+import { InfoContainer } from './components/Info/Info';
+import styles from './App.module.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const AppContainer = () => {
+	const [currentPlayer, setCurrentPlayer] = useState('X');
+	const [isGameEnded, setIsGameEnded] = useState(false);
+	const [isDraw, setIsDraw] = useState(false);
+	const [field, setField] = useState(['', '', '', '', '', '', '', '', '']);
 
-export default App;
+	return (
+		<>
+			<AppLayout
+				field={field}
+				setField={setField}
+				isDraw={isDraw}
+				setIsDraw={setIsDraw}
+				isGameEnded={isGameEnded}
+				setIsGameEnded={setIsGameEnded}
+				currentPlayer={currentPlayer}
+				setCurrentPlayer={setCurrentPlayer}
+			/>
+		</>
+	);
+};
+
+const AppLayout = ({
+	field,
+	setField,
+	isDraw,
+	setIsDraw,
+	isGameEnded,
+	setIsGameEnded,
+	currentPlayer,
+	setCurrentPlayer,
+}) => {
+	return (
+		<>
+			<InfoContainer
+				currentPlayer={currentPlayer}
+				isDraw={isDraw}
+				isGameEnded={isGameEnded}
+			/>
+			<PoolContainer
+				field={field}
+				currentPlayer={currentPlayer}
+				setCurrentPlayer={setCurrentPlayer}
+				isDraw={isDraw}
+				setIsDraw={setIsDraw}
+				isGameEnded={isGameEnded}
+				setIsGameEnded={setIsGameEnded}
+			/>
+			<button className={styles.beginButton}>{`Начать заново`}</button>
+		</>
+	);
+};
