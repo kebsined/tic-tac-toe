@@ -1,20 +1,22 @@
 import styles from './Info.module.css';
-export const InfoContainer = ({ isDraw, isGameEnded, currentPlayer }) => {
+import PropTypes from 'prop-types';
+
+export const InfoLayout = ({ currentPlayer, isGameEnded, isDraw }) => {
 	return (
-		<InfoLayout
-			isDraw={isDraw}
-			isGameEnded={isGameEnded}
-			currentPlayer={currentPlayer}
-		/>
+		<h1 className={styles.info}>
+			{` ${
+				isDraw
+					? 'Ничья!!!'
+					: isGameEnded
+					? 'Выиграл ' + currentPlayer + ' !!!'
+					: 'Ходит ' + currentPlayer
+			}`}
+		</h1>
 	);
 };
 
-const InfoLayout = ({ isDraw, isGameEnded, currentPlayer }) => {
-	return (
-		<h1 className={styles.info}>{`${isDraw ? 'Ничья' : ''} ${
-			!isDraw && !isGameEnded
-				? `Ходит ${currentPlayer}`
-				: `Победа: ${currentPlayer}`
-		}`}</h1>
-	);
+InfoLayout.propTypes = {
+	currentPlayer: PropTypes.string,
+	isGameEnded: PropTypes.bool,
+	isDraw: PropTypes.bool,
 };
